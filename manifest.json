@@ -3,7 +3,7 @@
   "name": "Josh's Sign Automator",
   "description": "Tool for automating sign creation with iWorQ software",
   "version": "1.0",
-  "permissions": ["scripting", "tabs", "activeTab"],
+  "permissions": ["scripting", "tabs", "activeTab", "storage"],
   "host_permissions": [
     "https://www.iworq.net/iworq/*"
   ],
@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.iworq.net/iworq/0_Pages/AccountMap.php*"],
-      "js": ["content_script.js"]
+      "js": ["scripts/start_script.js"]
     }
   ]
 }
