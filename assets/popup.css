@@ -85,7 +85,8 @@ form {
   text-align: center;
   text-decoration: none;
   transform: translate3d(0, 0, 0);
-  transition: all .3s;
+  /* transition: all .3s; */
+  transition: background-color 0.3s, transform 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -113,6 +114,11 @@ form {
 
 .button-65:active:after {
   opacity: 1;
+}
+
+.button-65:focus {
+  outline: 2px solid #90caf9; /* Light blue */
+        /* Optional: makes the outline not hug the element */
 }
 
 @media (min-width: 768px) {

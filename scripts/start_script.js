@@ -1,4 +1,4 @@
-// This file will have the code to execute the commands on the website
+// This file will have the code to execute the commands on the first map web page
 
 (() => {
     function addLocation() {
@@ -10,7 +10,10 @@
         }
     }
 
+    
+    chrome.storage.local.set({ stage: 0 });
 
+    // Listed for the click and if so then allow user to add a location
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (message.action === "addLocation") {
             addLocation();

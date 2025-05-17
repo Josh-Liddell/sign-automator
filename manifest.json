@@ -15,6 +15,11 @@
     {
       "matches": ["https://www.iworq.net/iworq/0_Pages/AccountMap.php*"],
       "js": ["scripts/start_script.js"]
+    },
+    {
+      "matches": ["https://www.iworq.net/iworq/0_Pages/popup*.php*"],
+      "js": ["scripts/sign_popup_script.js"],
+      "run_at": "document_idle"
     }
   ]
 }
