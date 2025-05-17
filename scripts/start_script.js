@@ -10,8 +10,15 @@
         }
     }
 
-    
+
     chrome.storage.local.set({ stage: 0 });
+
+    // Code to override the javascript confirmation alert
+    const script = document.createElement('script');
+    script.src = chrome.runtime.getURL('scripts/confirmation_override.js');
+    (document.head || document.documentElement).appendChild(script);
+    script.onload = () => script.remove();
+    console.log("Script injection attempted");
 
     // Listed for the click and if so then allow user to add a location
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

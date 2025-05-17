@@ -21,5 +21,9 @@
       "js": ["scripts/sign_popup_script.js"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "web_accessible_resources": [{
+    "resources": ["scripts/confirmation_override.js"],
+    "matches": ["https://*.iworq.net/*"]
+  }]
 }
