@@ -15,11 +15,16 @@ signInput.focus();
 
 // Listens for when 'place' button is clicked, then send a message to the content script
 document.getElementById('button1').addEventListener('click', function () {
-  
-  //Get user inputs and process them into lists
+
   const signIds = signInput.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
-  const rawDescs = descInput.value.split(',').map(s => s.trim());
-  const descriptions = signIds.map((_, idx) => rawDescs[idx] || '');
+
+  let descriptions;
+  if (descInput.value.length === 0) {
+    descriptions = signIds.map(() => ""); // fill with blanks for each sign
+  } else {
+    const rawDescs = descInput.value.split(',').map(s => s.trim());
+    descriptions = signIds.map((_, idx) => rawDescs[idx] || '');
+  }
 
   // Send variables to storage
   chrome.storage.local.set({
