@@ -6,43 +6,59 @@
 
     chrome.storage.local.get(["stage", "signIds", "signDescriptions"], (result) => {
 
-        if (result.stage === 1) {
-            console.log("Stage 1 detected");
-            document.getElementById('mutcd_id').shadowRoot.querySelector('div.option[data-value="283"]').click();
-            // Fill in its description
-            // remove it from the list???
-            document.getElementById('create').click();
+        if (result.stage !== 0) {
+            import(chrome.runtime.getURL('assets/sign_map.js')).then((signmap) => {
 
-            // If list still has more sign ids
-            chrome.storage.local.set({ stage: 2 });
+                if (result.stage === -1) {
+                    //End stage
+                    chrome.storage.local.set({ stage: 0 });
+                    window.close();
+                
+                } else if (result.stage === 1) {
+                    console.log("Stage 1 detected");
+                    // document.getElementById('mutcd_id').shadowRoot.querySelector('div.option[data-value="283"]').click();
+                    let sign = result.signIds.shift();
+                    sign = sign.toUpperCase();
+                    document.getElementById('mutcd_id').shadowRoot.querySelector(`div.option[data-value="${signmap.default[sign]}"]`).click();
+                    // Fill in its description
 
-            // Else (set stage 0 and do window.close())
+                    if (result.signIds.length > 0) {
+                        // Save updated signIds array (with first item removed), and set stage to 2
+                        chrome.storage.local.set({ signIds: result.signIds, stage: 2 });
+                    } else {
+                        chrome.storage.local.set({ stage: -1 });
+                    }
 
-        } else if (result.stage === 2) {
-            console.log("Stage 2 detected");
+                    // Finish first stage by clicking the create button
+                    document.getElementById('create').click();
 
-            // Code to override the javascript confirmation alert
-            const script = document.createElement('script');
-            script.src = chrome.runtime.getURL('scripts/confirmation_override.js');
-            (document.head || document.documentElement).appendChild(script);
-            script.onload = () => script.remove();
-            console.log("Script injection attempted");
+                } else if (result.stage === 2) {
+                    // This stage is needed to press the copy button after the first sign is created
+                    console.log("Stage 2 detected");
+                    
+                    // Code to override the javascript confirmation alert
+                    const script = document.createElement('script');
+                    script.src = chrome.runtime.getURL('scripts/confirmation_override.js');
+                    (document.head || document.documentElement).appendChild(script);
+                    script.onload = () => script.remove();
+                    console.log("Script injection attempted");
+                    
+                    // click copy
 
-            // Loop number of times there are sign ids left:
+                    
 
-            // set stage = 3 (looping)
-            //Click the copy button
+                } else if (result.stage === 3) {
+                    console.log("Stage 3 (looping) detected");
+                    // Enter sign id
+                    // Enter description
+                    // Click the save button (wait for saving to complete)
 
+                    //If more signs, override and cick the copy button
+                    // Else set stage = 0 and close window
+                    
+                }
 
-        } else if (result.stage === 3) {
-            console.log("Stage 3 (looping) detected");
-            // Enter sign id
-            // Enter description
-            // Click the save button (wait for saving to complete)
-
-            //If more signs, cick the copy button
-            // Else set stage = 0 and do window.close()
-            
+            });
         }
 
     });

@@ -23,7 +23,7 @@
     }
   ],
   "web_accessible_resources": [{
-    "resources": ["scripts/confirmation_override.js"],
+    "resources": ["scripts/confirmation_override.js", "assets/sign_map.js"],
     "matches": ["https://*.iworq.net/*"]
   }]
 }
