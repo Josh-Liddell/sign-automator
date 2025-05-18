@@ -34,10 +34,6 @@ document.getElementById('button1').addEventListener('click', function () {
   }, () => {
     console.log('Data saved:', { stage: 1, signIds, descriptions });
 
-    // Clear fields
-    signInput.value = '';
-    descInput.value = '';
-
     //Send messsage
     chrome.tabs.query({active: true, currentWindow: true}, tabs => {
       chrome.tabs.sendMessage(
@@ -48,6 +44,11 @@ document.getElementById('button1').addEventListener('click', function () {
         }
       );
     });
+
+    // Clear fields
+    window.close();
+    signInput.value = '';
+    descInput.value = '';
 
   });
 });
