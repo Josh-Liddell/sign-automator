@@ -13,7 +13,7 @@
     
     import(chrome.runtime.getURL('assets/sign_map.js')).then((signmap) => {
         
-        chrome.storage.local.get(["stage", "signIds", "signDescriptions"], (result) => {
+        chrome.storage.local.get(["stage", "signIds", "descriptions"], (result) => {
             
             if (result.stage !== 0) {
 
@@ -28,17 +28,24 @@
                     let sign = result.signIds.shift();
                     sign = sign.toUpperCase();
                     document.getElementById('mutcd_id').shadowRoot.querySelector(`div.option[data-value="${signmap.default[sign]}"]`).click();
-                    
-                    
-                    // Fill in its description
-                    // document.getElementById('objvalGETIT').value = result.signDescriptions.shift();
+                    document.getElementById('field451591').value = result.descriptions.shift();
 
                     if (result.signIds.length > 0) {
                         // Save updated signIds array (with first item removed), and set stage to 2
-                        chrome.storage.local.set({ signIds: result.signIds, stage: 2 });
+                        chrome.storage.local.set({ 
+                            signIds: result.signIds, 
+                            stage: 2,
+                            descriptions: result.descriptions
+                        });
                     } else {
                         chrome.storage.local.set({ stage: -1 });
                     }
+
+                    // Increment count
+                    chrome.storage.local.get(["count"], (result) => {
+                        let currentCount = result.count || 0;
+                        chrome.storage.local.set({ count: currentCount + 1 });
+                    });
 
                     // Finish by clicking the create button
                     document.getElementById('create').click();
@@ -59,8 +66,7 @@
                     let sign = result.signIds.shift();
                     sign = sign.toUpperCase();
                     document.getElementById('mutcd_id').shadowRoot.querySelector(`div.option[data-value="${signmap.default[sign]}"]`).click();
-                    
-                    // Enter description
+                    document.getElementById('field451591').value = result.descriptions.shift();
 
                     const saveButton = document.getElementById('save')
                     const saveTextElement = document.getElementById('savetext');
@@ -71,7 +77,10 @@
                         if (saveTextElement.textContent === "Saved") {
                             mutationObserver.disconnect();
                             if (result.signIds.length > 0) {
-                                chrome.storage.local.set({ signIds: result.signIds });
+                                chrome.storage.local.set({ 
+                                    signIds: result.signIds,
+                                    descriptions: result.descriptions 
+                                });
                                 document.getElementById('sidebar-copy-support').click();
                             } else {
                                 chrome.storage.local.set({ stage: 0 });
@@ -86,6 +95,12 @@
                         childList: true
                     });
 
+                    // Increment count
+                    chrome.storage.local.get(["count"], (result) => {
+                        let currentCount = result.count || 0;
+                        chrome.storage.local.set({ count: currentCount + 1 });
+                    });
+                    
                     // Click the save button 
                     saveButton.click();
                     

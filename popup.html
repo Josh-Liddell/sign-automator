@@ -1,14 +1,23 @@
 <link href="assets/popup.css" rel="stylesheet" type="text/css" />
 <script type="module" src="scripts/popup.js"></script>
+<meta charset="UTF-8">
 
 <div class="container">
   <div class="header">
-    <img src="assets/sign.png" alt="logo" class="logo" id="logo-button">
-    <p>Sign Automator</p>
+    <button type="button">
+      <img src="assets/sign.png" alt="logo" class="logo" id="logo-button">
+    </button>
+    <a href="https://github.com/Josh-Liddell/sign-automator/tree/main" target="_blank" rel="noopener noreferrer">Sign Automator</a>
   </div>
-  <form id="main-page">
+
+  <div class="main-page">
     <div class="input">
-      <label for="name">Sign ids:</label>
+      <div class="signids">
+        <label for="name">Sign ids:</label>
+        <button type="button">
+          <img src="assets/pic-icon.png" alt="pic" class="picture" type="button">
+        </button>
+      </div>
       <input type="text" id="text1" name="signs">
     </div>
     <div class="input">
@@ -17,8 +26,33 @@
     </div>
     <div class="buttons">
       <button type="button" class="button-65" id="button1">Place</button>
-      <button type="button" class="button-65">Update</button>
+      <button type="button" class="button-65" id="button2">Update</button>
     </div>
-  </form>
+  </div>
+
+  <div class="about">
+    <h3>Signs created: <span id="count"></span></h3>
+    <p>Made with ♥ by Josh Liddell</p>
+  </div>
+
+  <div class="images">
+    <img src="assets/signs/stop.png" alt="sign" class="sign-image" data-sign="R1-1, OC-4, OC-4">
+    <img src="assets/signs/R1-1.png" alt="sign" class="sign-image" data-sign="R1-1">
+    <img src="assets/signs/OC-4.png" alt="sign" class="sign-image" data-sign="OC-4">
+    <img src="assets/signs/S1-1-W16-7PL.png" alt="sign" class="sign-image" data-sign="S1-1-W16-7PL">
+    <img src="assets/signs/S1-1-W16-9P.png" alt="sign" class="sign-image" data-sign="S1-1-W16-9P">
+    <img src="assets/signs/S1-1.png" alt="sign" class="sign-image" data-sign="S1-1">
+    <img src="assets/signs/object.png" alt="sign" class="sign-image" data-sign="R4-7, OM1-3">
+    <img src="assets/signs/R2-1-25.png" alt="sign" class="sign-image" data-sign="R2-1-25">
+    <img src="assets/signs/R2-1-35.png" alt="sign" class="sign-image" data-sign="R2-1-35">
+    <img src="assets/signs/W14-1.png" alt="sign" class="sign-image" data-sign="W14-1">
+    <img src="assets/signs/W14-2.png" alt="sign" class="sign-image" data-sign="W14-2">
+    <img src="assets/signs/OC-3.png" alt="sign" class="sign-image" data-sign="OC-3">
+    <img src="assets/signs/W11-2.png" alt="sign" class="sign-image" data-sign="W11-2">
+    <img src="assets/signs/W16-9P.png" alt="sign" class="sign-image" data-sign="W16-9P">
+    <img src="assets/signs/W16-7P.png" alt="sign" class="sign-image" data-sign="W16-7P">
+    <img src="assets/signs/R1-2.png" alt="sign" class="sign-image" data-sign="R1-2">
+  </div>
+
 </div>
 

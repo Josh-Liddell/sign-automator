@@ -1,18 +1,38 @@
-body {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* body {
   margin: 0;
 }
 
 p {
   padding: 0;
   margin: 0;
+} */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+label {
+  font-size: 16px;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   
   width: 250px;
+  height: 250px;
   color: white;
   background-color: rgb(34, 34, 34);
 }
@@ -36,6 +56,13 @@ p {
   width: 32px;
   height: 32px;
   margin-left: 1rem;
+  /* cursor: pointer; */
+}
+
+.picture {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
 }
 
 .title {
@@ -45,14 +72,16 @@ p {
 }
 
 
-form {
+.main-page {
   display: flex;
   flex-direction: column;
+  height: 100%;
 
-  margin-top: 20px;
-  margin-bottom: 20px;
+  /* margin-top: 20px;
+  margin-bottom: 20px; */
   gap: 20px;
-  align-items: center;
+  align-items: center; 
+  justify-content: center;
 }
 
 .input {
@@ -61,6 +90,11 @@ form {
   gap: 5px;
 }
 
+.signids {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
 .button-65 {
   appearance: none;
@@ -116,7 +150,7 @@ form {
   opacity: 1;
 }
 
-.button-65:focus {
+.button-65:focus-visible {
   outline: 2px solid #90caf9; /* Light blue */
         /* Optional: makes the outline not hug the element */
 }
@@ -132,4 +166,44 @@ form {
   display: flex;
   gap: 20px;
   
+}
+
+.about {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  height: 100%;
+  overflow-y: auto;
+
+  font-family: "Segoe UI", "Helvetica", "Arial", sans-serif;
+  font-size: 14px;
+}
+
+
+.images {
+  /* margin-top: 1rem; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center;  
+  flex-wrap: wrap;
+  align-content: center; */
+
+  display: none;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
+  
+
+  height: 100%;
+  overflow-y: auto;   
+  font-size: 14px;
+}
+
+.sign-image {
+  height: 64px;
+  width: 64px;
 }
