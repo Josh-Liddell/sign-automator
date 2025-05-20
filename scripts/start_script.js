@@ -1,4 +1,4 @@
-// This file will have the code to execute the commands on the first map web page
+// Map Page Script
 
 (() => {
     function addLocation() {
@@ -37,7 +37,7 @@
                 } else {
                     console.error('Cancel button not found even after delay');
                 }
-            }, 1000); // 1000ms = 1 second
+            }, 1000); // In ms
         }
     });
 

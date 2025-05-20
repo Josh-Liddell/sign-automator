@@ -1,4 +1,5 @@
-// This script controls the popup functionality for the extension and will send a message to content script when the button is clicked. (and will add the data to storage)
+// The Extension popup script
+
 
 // Prevent Enter key from submitting form or adding new lines
 document.querySelectorAll('input').forEach(input => {
@@ -113,9 +114,31 @@ chrome.storage.local.get(["count"], (result) => {
     document.getElementById('count').textContent = currentCount;  
 });
 
-
-
 // Handle update button
 document.getElementById('button2').addEventListener('click', function () {
-  console.log('Not added yet sorry!');
+
+  const signIds = signInput.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
+
+  let descriptions;
+  if (descInput.value.length === 0) {
+    descriptions = signIds.map(() => ""); // fill with blanks for each sign
+  } else {
+    const rawDescs = descInput.value.split(',').map(s => s.trim());
+    descriptions = signIds.map((_, idx) => rawDescs[idx] || '');
+  }
+
+  // Send variables to storage
+  chrome.storage.local.set({
+    stage: 3,
+    signIds: signIds,
+    descriptions: descriptions
+  }, () => {
+    // console.log('Data saved:', { stage: 3, signIds, descriptions });
+
+    // Clear fields
+    window.close();
+    signInput.value = '';
+    descInput.value = '';
+
+  });
 });

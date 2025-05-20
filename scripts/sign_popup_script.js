@@ -1,4 +1,4 @@
-// This script executes every time a iworq popup loads
+// The iWorQ popup script
 
 (() => {
 
@@ -56,7 +56,11 @@
                     chrome.storage.local.set({ stage: 3 });
                     
                     // Click the copy button
-                    document.getElementById('sidebar-copy-support').click();
+                    // document.getElementById('sidebar-copy-support').click();
+                    setTimeout(() => {
+                        // Clicking copy button after delay (to allow confirmation override to load)
+                        document.getElementById('sidebar-copy-support').click();
+                    }, 500);
                     
 
                 } else if (result.stage === 3) {
