@@ -1,7 +1,6 @@
 // The iWorQ popup script
 
 (() => {
-
     console.log("Sign popup script loaded");
 
     // Code to override the javascript confirmation alert
@@ -47,7 +46,6 @@
                         chrome.storage.local.set({ count: currentCount + 1 });
                     });
 
-                    // Finish by clicking the create button
                     document.getElementById('create').click();
 
                 } else if (result.stage === 2) {
@@ -55,18 +53,15 @@
                     console.log("Stage 2 detected");
                     chrome.storage.local.set({ stage: 3 });
                     
-                    // Click the copy button
-                    // document.getElementById('sidebar-copy-support').click();
                     setTimeout(() => {
-                        // Clicking copy button after delay (to allow confirmation override to load)
+                        // to allow confirmation override to load
                         document.getElementById('sidebar-copy-support').click();
                     }, 500);
                     
-
                 } else if (result.stage === 3) {
                     // This stage controls page after copy button is clicked
                     console.log("Stage 3 (looping) detected");
-                    // Enter sign id (get them using shift)
+                    
                     let sign = result.signIds.shift();
                     sign = sign.toUpperCase();
                     document.getElementById('mutcd_id').shadowRoot.querySelector(`div.option[data-value="${signmap.default[sign]}"]`).click();
@@ -85,7 +80,9 @@
                                     signIds: result.signIds,
                                     descriptions: result.descriptions 
                                 });
-                                document.getElementById('sidebar-copy-support').click();
+                                setTimeout(() => {
+                                    document.getElementById('sidebar-copy-support').click();
+                                }, 500);
                             } else {
                                 chrome.storage.local.set({ stage: 0 });
                                 window.close();
@@ -99,13 +96,12 @@
                         childList: true
                     });
 
-                    // Increment count
+                    // Increment sign count
                     chrome.storage.local.get(["count"], (result) => {
                         let currentCount = result.count || 0;
                         chrome.storage.local.set({ count: currentCount + 1 });
                     });
                     
-                    // Click the save button 
                     saveButton.click();
                     
                 }

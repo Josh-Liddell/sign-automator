@@ -1,6 +1,5 @@
 // The Extension popup script
 
-
 // Prevent Enter key from submitting form or adding new lines
 document.querySelectorAll('input').forEach(input => {
   input.addEventListener('keydown', function (e) {

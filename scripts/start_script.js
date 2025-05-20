@@ -37,7 +37,7 @@
                 } else {
                     console.error('Cancel button not found even after delay');
                 }
-            }, 1000); // In ms
+            }, 1000);
         }
     });
 
