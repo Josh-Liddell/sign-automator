@@ -140,4 +140,15 @@ document.getElementById('button2').addEventListener('click', function () {
     descInput.value = '';
 
   });
+
+  //Send messsage
+    chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+      chrome.tabs.sendMessage(
+        tabs[0].id,
+        {action: "update"},
+        response => {
+          console.log("Response:", response);
+        }
+      );
+    });
 });

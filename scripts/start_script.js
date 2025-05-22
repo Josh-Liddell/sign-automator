@@ -11,6 +11,7 @@
     }
 
     chrome.storage.local.set({ stage: 0 });
+    document.querySelector(".navbar-toggler").click()
 
     // Code to override the javascript confirmation alert
     const script = document.createElement('script');
@@ -19,7 +20,7 @@
     script.onload = () => script.remove();
     console.log("Script injection attempted");
 
-    // Listed for the click and if so then allow user to add a location
+    // Listed for the click of the buttons
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (message.action === "addLocation") {
             addLocation();
@@ -38,6 +39,15 @@
                     console.error('Cancel button not found even after delay');
                 }
             }, 1000);
+        } else if (message.action === "update") {
+            const editButton = document.querySelector(".editView");
+            if (editButton) {
+                editButton.click();
+            } else {
+                console.log("edit button not found");
+            }
+
+            sendResponse({status: "attempted"});
         }
     });
 
