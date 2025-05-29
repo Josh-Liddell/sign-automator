@@ -18,7 +18,7 @@ With this tool you can input a list of sign IDs and descriptions and have the ex
 
 ## Getting Started
 
-1. Clone, or download and unzip this repository. 
+1. Clone, or download and unzip this repository. (to download click the above green code button and then click download zip)
 2. In Chrome, navigate to `chrome://extensions/`.
 3. Enable **Developer mode** (top right).
 4. Click **Load unpacked** and select the extension directory.
@@ -30,10 +30,10 @@ With this tool you can input a list of sign IDs and descriptions and have the ex
 1. Enter one or multiple sign IDs separated by commas into the first text field. (use image icons to speed up the process)
    - Example: `r1-1, oc-4, oc-4`
 
-2. If a sign requires a description, enter each description in order in the second text field, separated by commas.  
+2. If a sign requires a description(object_val), enter each description in order in the second text field, separated by commas.  
    Leave blank where no description needed.  
    - Example: `,"desc 2", "desc 3"`  
-     (This applies a description to the second and third signs but no description to the first as it was left blank.)
+     (This applies a description to the second and third signs but no description to the first as it was left blank. Leave entire field blank if no descriptions are needed)
 
 3. Click the place button and then click a point on the map. 
 
@@ -50,4 +50,4 @@ With this tool you can input a list of sign IDs and descriptions and have the ex
 
 ## Disclaimer
 
-This tool is intended for internal use by authorized personnel with access to iWorQ. Use responsibly.
+This tool is intended for internal use by authorized personnel with access to iWorQ.
